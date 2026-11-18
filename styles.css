@@ -753,7 +753,6 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 }
 
 /* Keep quantity feedback beside the edited product; highlight values briefly. */
-.row-quantity-feedback { display: block; margin-top: 6px; font-size: var(--secondary-read); line-height: 1.35; font-weight: 600; color: #244d72; overflow-wrap: anywhere; text-align: center; }
 .quantity-value, .line-amount-value { display: inline-block; border-radius: 5px; padding: 4px 2px; }
 .quantity-updated .quantity-value, .quantity-updated .line-amount-value { background: #fff0a6; color: #20384d; box-shadow: 0 0 0 3px #c89216; font-weight: 800; }
 

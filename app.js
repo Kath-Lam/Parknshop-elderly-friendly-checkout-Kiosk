@@ -2,7 +2,7 @@ import {LiveQRScanner} from './qr-scanner.js';
 import {PRODUCTS, productById, money, createCart, addItem, setQuantity, setBags, totals} from './checkout-model.js';
 
 const $ = selector => document.querySelector(selector);
-const state = {route: 'home', lang: 'zh', cart: createCart(), selected: null, member: false, payment: '', large: false, removed: null, quantityFeedback: null, quantityHighlight: null};
+const state = {route: 'home', lang: 'zh', cart: createCart(), selected: null, member: false, payment: '', large: false, removed: null, quantityHighlight: null};
 const t = (zh, en) => state.lang === 'zh' ? zh : en;
 const discountMoney = cents => cents ? '−'+money(cents) : money(0);
 const hkd = cents => 'HK'+money(cents);
@@ -34,11 +34,11 @@ const dots = '<span class="moneyback-dots" aria-hidden="true"><i></i></span>';
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toast.timer); toast.timer = setTimeout(() => $('#toast').classList.remove('visible'), 5000); }
 function clearQuantityFeedback(){
   clearTimeout(quantityHighlightTimer);quantityHighlightTimer=null;
-  state.quantityFeedback=null;state.quantityHighlight=null;
+  state.quantityHighlight=null;
 }
-function showQuantityFeedback(id,quantity){
+function showQuantityHighlight(id){
   clearTimeout(quantityHighlightTimer);
-  state.quantityFeedback={id,quantity};state.quantityHighlight=id;
+  state.quantityHighlight=id;
   quantityHighlightTimer=setTimeout(()=>{
     state.quantityHighlight=null;
     document.querySelectorAll('.quantity-updated').forEach(row=>row.classList.remove('quantity-updated'));
@@ -121,8 +121,8 @@ function shoppingReceipt(){
   const colgroup='<col class="name-col"><col class="unit-col"><col class="qty-col"><col class="amount-col">';
   const headers=`<th scope="col">${t('商品名稱','Item')}</th><th scope="col">${t('單價','Unit price')}</th><th scope="col">${t('數量','Qty')}</th><th scope="col">${t('金額','Amount')}</th>`;
   return `<div class="shopping-receipt"><div class="shopping-table-area"><div class="shopping-table-scroll" tabindex="0" role="region" aria-label="${locked?t('付款前商品清單，只供核對','Items before payment, review only'):t('商品清單，可上下捲動','Your items, scrollable')}"><table class="shopping-table ${locked?'readonly-table':''}"><colgroup>${colgroup}</colgroup><thead><tr>${headers}</tr></thead><tbody>${state.cart.items.length?state.cart.items.map(item=>{
-    const p=productById(item.id),feedback=!locked&&state.quantityFeedback?.id===item.id?state.quantityFeedback:null;
-    const quantityCell=locked?`<span class="quantity-value">${item.quantity}</span>`:`<div class="row-quantity-controls" role="group" aria-label="${t(`修改${p.name}數量，目前 ${item.quantity} 件`,`Change quantity for ${p.en}, currently ${item.quantity}`)}">${button('−','item-minus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`減少一件${p.name}`,`Remove one ${p.en}`)}"`)}<span class="quantity-value">${item.quantity}</span>${button('+','item-plus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`增加一件${p.name}`,`Add one ${p.en}`)}" ${item.quantity===99?'disabled':''}`)}</div>${feedback?`<small class="row-quantity-feedback">${t(`數量已改為 ${feedback.quantity} 件`,`Quantity changed to ${feedback.quantity}`)}</small>`:''}`;
+    const p=productById(item.id);
+    const quantityCell=locked?`<span class="quantity-value">${item.quantity}</span>`:`<div class="row-quantity-controls" role="group" aria-label="${t(`修改${p.name}數量，目前 ${item.quantity} 件`,`Change quantity for ${p.en}, currently ${item.quantity}`)}">${button('−','item-minus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`減少一件${p.name}`,`Remove one ${p.en}`)}"`)}<span class="quantity-value">${item.quantity}</span>${button('+','item-plus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`增加一件${p.name}`,`Add one ${p.en}`)}" ${item.quantity===99?'disabled':''}`)}</div>`;
     return `<tr data-product-id="${p.id}" class="${!locked&&state.quantityHighlight===p.id?'quantity-updated':''}"><th scope="row">${receiptProductLabel(p)}</th><td class="shopping-money">${money(p.price)}</td><td class="shopping-quantity">${quantityCell}</td><td class="shopping-line-amount"><span class="line-amount-value">${money(p.price*item.quantity)}</span></td></tr>`;
   }).join(''):`<tr class="shopping-empty"><td colspan="4">${icon('scan')}<strong>${t('請加入商品','Please add a product')}</strong><span>${t('點選商品加入清單','Select a product to add it')}</span></td></tr>`}</tbody></table></div><div id="more-products-hint" class="shopping-scroll-hint" hidden>${t('下方還有商品 ↓','More items below ↓')}</div></div><div class="shopping-breakdown"><div><span>${t('商品小計','Items subtotal')}</span><strong>${money(sum.subtotal)}</strong></div><div class="saving"><span>${t('優惠減免','Promotion savings')}</span><strong>${discountMoney(sum.discount)}</strong></div></div><div class="shopping-bag-charge"><span>${t(`購物袋　${state.cart.bags} 個 × $1.00`,`Shopping bags　${state.cart.bags} × $1.00`)}</span><strong>${money(sum.bagCharge)}</strong></div><div class="receipt-totals shopping-totals" aria-live="polite"><div class="total-stat basket-item-count"><strong>${sum.quantity}</strong><span>${t('件商品','items')}</span></div><div class="total-stat due"><span>${t('應付總額','Total due')}</span><strong data-testid="total">${hkd(sum.total)}</strong></div></div></div>`;
 }
@@ -259,11 +259,9 @@ function act(action, target) {
       const n=item.quantity+(action==='item-plus'?1:-1);
       if(n===0){state.selected=id;act('remove');break;}
       if(n<1||n>99)break;
-      state.cart=setQuantity(state.cart,id,n);showQuantityFeedback(id,n);
+      state.cart=setQuantity(state.cart,id,n);showQuantityHighlight(id);
       const scroll=$('.shopping-table-scroll');const position={top:scroll.scrollTop,left:scroll.scrollLeft};
       render();$('.shopping-table-scroll').scrollTop=position.top;$('.shopping-table-scroll').scrollLeft=position.left;
-      $('#toast').classList.remove('visible');clearTimeout(toast.timer);
-      $('#toast').textContent=t(`${productById(id).name}數量已改為 ${n} 件。`,`${productById(id).en} quantity changed to ${n}.`);
       break;
     }
     case 'start': state.route = 'scan'; render(); break;
