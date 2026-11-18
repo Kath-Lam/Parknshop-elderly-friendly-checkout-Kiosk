@@ -31,7 +31,7 @@ main { max-width: 1224px; padding: 0 20px 18px; margin: 0 auto; }
 .kiosk { background: var(--screen); overflow: hidden; border-radius: 9px; border: 1px solid #434b68; }
 .kiosk-header { height: 51px; position: relative; display: flex; justify-content: center; align-items: center; background: linear-gradient(90deg, #23345e, #202941 65%, #16223f); border-bottom: 1px solid #6280b13d; }
 .fusion { color: var(--lime); font-size: 38px; line-height: 1; font-weight: 800; letter-spacing: -2.8px; }
-.language-button { position: absolute; z-index: 2; top: 7px; left: 15px; height: 55px; width: 55px; color: white; border: 3px solid #ccd8e4; border-radius: 50%; background: radial-gradient(circle at 40% 30%, #df6254, #bc2f36); font-size: 17px; font-weight: bold; box-shadow: 0 0 0 2px #4d73b8; }
+.language-button { position: absolute; z-index: 2; top: 7px; left: 15px; height: 54px; width: 108px; color: white; border: 3px solid #ccd8e4; border-radius: 10px; background: linear-gradient(180deg, #df6254, #bc2f36); font-size: 20px; font-weight: bold; box-shadow: 0 0 0 2px #4d73b8; }
 .terminal-number { position: absolute; right: 20px; display: flex; align-items: center; gap: 10px; font-size: 9px; color: #c8d4ef; letter-spacing: 1px; }
 .terminal-number strong { font-size: 18px; color: #c7e287; letter-spacing: 0; }
 .screen { height: clamp(480px, 46vw, 576px); position: relative; background: radial-gradient(ellipse at 0 100%, #2448a5, transparent 65%), linear-gradient(115deg, #202e71, #101b43); }
@@ -294,7 +294,7 @@ button, a { touch-action: manipulation; }
 .page-button[aria-pressed="true"] { background: #d5e8ff; color: #183766; }
 main { max-width: 1320px; }
 .kiosk-header { height: 58px; }
-.language-button { width: 60px; height: 60px; font-size: 18px; }
+.language-button { width: 108px; height: 54px; font-size: 20px; }
 .terminal-number { font-size: 12px; }
 .screen { height: var(--screen-height); }
 .home-screen { height: 100%; }
@@ -937,6 +937,7 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-pay { min-height: 180px; font-size: 52px; }
 }
 @media(max-width: 760px) {
+  .language-button { width: 84px; height: 46px; left: 9px; font-size: 17px; border-radius: 8px; }
   .kiosk-header #staff-help { width: 150px; font-size: 20px; padding: 6px; }
   .modal-header .modal-help { font-size: 22px; }
 }
