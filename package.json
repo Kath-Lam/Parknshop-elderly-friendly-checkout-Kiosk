@@ -1,0 +1,7 @@
+{
+  "name": "parknshop-student-checkout",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {"test": "node --test checkout-model.test.mjs"}
+}

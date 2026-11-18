@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="zh-HK">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#161a24">
+  <title>百佳自助付款機</title>
+  <link rel="icon" type="image/svg+xml" href="assets/favicon.svg">
+  <link rel="stylesheet" href="styles.css?v=item-details-19">
+  <script type="module" src="app.js?v=item-details-19"></script>
+</head>
+<body>
+  <header class="page-header">
+    <div class="page-identity"><span class="pns-mark">PARKnSHOP<span>百佳</span></span><span class="page-divider"></span><h1>自助付款機</h1></div>
+    <div class="page-tools"><button id="text-size" class="page-button" type="button" aria-pressed="false">放大文字</button><button id="speak" class="page-button" type="button">朗讀提示</button><button id="fullscreen" class="page-button" type="button" aria-label="全螢幕">全螢幕</button><button id="reset" class="page-button" type="button">重新開始</button></div>
+  </header>
+
+  <main>
+    <div class="kiosk-frame">
+      <section class="kiosk" aria-label="自助付款機">
+        <header class="kiosk-header">
+          <button class="language-button" id="language" type="button" aria-label="Switch to English">ENG</button>
+          <span class="terminal-number">SELF CHECKOUT <strong>05</strong></span>
+          <button id="staff-help" class="staff-help-button" type="button" data-action="help"></button>
+        </header>
+        <div id="screen" class="screen"></div>
+      </section>
+    </div>
+
+    <section class="demo-dock" aria-label="掃描商品">
+      <div class="demo-label"><strong id="demo-title">掃描商品</strong><span id="demo-subtitle">選擇商品加入購物清單</span></div>
+      <div id="demo-products" class="demo-products"></div>
+    </section>
+
+  </main>
+
+  <dialog id="modal" class="modal"><div id="modal-content"></div></dialog>
+  <dialog id="staff-help-dialog" class="modal staff-help-dialog" aria-labelledby="staff-help-title" aria-describedby="staff-help-description">
+    <div class="modal-header"><h2 id="staff-help-title"></h2><button type="button" data-action="staff-help-close" class="modal-close" id="staff-help-close"></button></div>
+    <div class="modal-body"><p id="staff-help-description"></p><div class="modal-actions"><button type="button" data-action="staff-help-close" class="modal-action" id="staff-help-return"></button></div></div>
+  </dialog>
+  <div id="toast" role="status" aria-live="polite" class="toast"></div>
+</body>
+</html>
