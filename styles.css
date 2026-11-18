@@ -564,11 +564,10 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .shopping-receipt { background: #f7f8f2; color: #172a3f; border: 1px solid #acbfd7; display: flex; flex-direction: column; min-width: 0; min-height: 0; }
 .shopping-table-scroll { flex: 1; min-height: 0; overflow: auto; scrollbar-color: #8799af #eef0ed; }
 .shopping-table { border-collapse: separate; border-spacing: 0; width: 100%; table-layout: fixed; text-align: left; font-size: var(--read); }
-.shopping-table .name-col { width: 32%; }
-.shopping-table .qty-col { width: 10%; }
-.shopping-table .unit-col { width: 17%; }
-.shopping-table .controls-col { width: 23%; }
-.shopping-table .amount-col { width: 18%; }
+.shopping-table .name-col { width: 38%; }
+.shopping-table .unit-col { width: 18%; }
+.shopping-table .qty-col { width: 27%; }
+.shopping-table .amount-col { width: 17%; }
 .shopping-table thead th { position: sticky; z-index: 1; top: 0; background: #e4ebf2; color: #233b56; font-weight: 700; border-bottom: 2px solid #8a9db5; padding: 14px 12px; font-size: var(--read); white-space: normal; }
 .shopping-table tbody td, .shopping-table tbody th { border-bottom: 1px solid #c4ced6; padding: 14px 12px; vertical-align: middle; }
 .shopping-table tbody th { font-weight: 600; }
@@ -578,7 +577,8 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .shopping-quantity { font-size: var(--control-read); font-weight: 700; text-align: center; }
 .shopping-money, .shopping-line-amount { font-variant-numeric: tabular-nums; white-space: nowrap; }
 .shopping-line-amount { text-align: right; font-weight: 600; }
-.row-quantity-controls { display: flex; align-items: center; justify-content: center; gap: 10px; }
+.row-quantity-controls { display: flex; align-items: center; justify-content: center; gap: 10px; white-space: nowrap; }
+.row-quantity-controls .quantity-value { min-width: 38px; }
 .row-quantity-button { display: grid; place-items: center; min-height: 52px; height: 52px; width: 52px; min-width: 52px; border: 2px solid #6483b0; border-radius: 8px; color: #163f8d; background: #fefefe; padding: 0; font-size: 32px; line-height: 1; }
 .row-quantity-button:disabled { background: #e2e7ee; color: #52647d; opacity: 1; border-color: #a5b3c7; }
 .shopping-empty td { height: 235px; text-align: center; }
@@ -753,7 +753,7 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 }
 
 /* Keep quantity feedback beside the edited product; highlight values briefly. */
-.row-quantity-feedback { display: block; margin-top: 6px; font-size: var(--secondary-read); line-height: 1.5; font-weight: 500; color: #244d72; overflow-wrap: anywhere; }
+.row-quantity-feedback { display: block; margin-top: 6px; font-size: var(--secondary-read); line-height: 1.35; font-weight: 600; color: #244d72; overflow-wrap: anywhere; text-align: center; }
 .quantity-value, .line-amount-value { display: inline-block; border-radius: 5px; padding: 4px 2px; }
 .quantity-updated .quantity-value, .quantity-updated .line-amount-value { background: #fff0a6; color: #20384d; box-shadow: 0 0 0 3px #c89216; font-weight: 800; }
 
