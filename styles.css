@@ -553,7 +553,10 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .shopping-layout { height: 100%; padding: 22px 24px 18px; display: grid; grid-template-rows: auto minmax(0,1fr); gap: 14px; }
 .shopping-top { display: flex; align-items: center; justify-content: space-between; gap: 24px; min-height: 64px; }
 .shopping-top h2 { color: white; font-size: calc(var(--control-read) + 4px); margin: 0; }
+.shopping-heading { min-width: 0; }
+.shopping-heading p { color: #dce8f8; font-size: var(--secondary-read); line-height: 1.35; margin: 5px 0 0; }
 .shopping-member { display: flex; align-items: center; justify-content: flex-start; gap: 14px; color: #fff; background: #142853; border: 2px solid #789bcc; border-radius: 8px; padding: 12px 18px; min-height: 64px; min-width: 330px; max-width: 55%; font-size: var(--read); text-align: left; }
+.payment-member-status { cursor: default; }
 .shopping-member svg { height: 28px; width: 28px; flex-shrink: 0; }
 .shopping-member strong { font-weight: 600; overflow-wrap: anywhere; }
 .shopping-main { display: grid; grid-template-columns: minmax(0,1fr) 230px; gap: 22px; min-height: 0; }
@@ -901,6 +904,10 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .payment-layout .shopping-breakdown > div, .payment-layout .shopping-bag-charge { padding: 2px 14px; }
 .payment-layout .shopping-table .name-col { width: 28%; }
 .payment-layout .shopping-table .qty-col { width: 14%; }
+.payment-layout .shopping-table.readonly-table .name-col { width: 38%; }
+.payment-layout .shopping-table.readonly-table .unit-col { width: 20%; }
+.payment-layout .shopping-table.readonly-table .qty-col { width: 14%; }
+.payment-layout .shopping-table.readonly-table .amount-col { width: 28%; }
 .payment-layout .payment-grid [data-method="WeChat Pay"] { flex-direction: row; gap: 4px; padding: 4px; }
 .payment-layout .payment-grid [data-method="WeChat Pay"] .payment-logo { width: 36px; height: 30px; flex-shrink: 0; }
 .payment-layout .payment-grid [data-method="WeChat Pay"] .payment-name { min-width: 0; line-height: 1.1; overflow-wrap: anywhere; }
