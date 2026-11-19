@@ -966,6 +966,7 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 /* Give the basket summary more space than an almost-empty product list. */
 @media(min-width: 901px) {
   .shopping-page { --read: 30px; --secondary-read: 25px; --control-read: 36px; }
+  .shopping-page .shopping-screen { height: min(calc(100dvh - 166px), 680px); min-height: 550px; }
   .shopping-page .shopping-left { grid-template-rows: auto minmax(90px,1fr); align-content: stretch; }
   .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto minmax(90px,1fr); }
   .shopping-page .shopping-receipt { height: min(430px, calc(100dvh - 410px)); min-height: 350px; }
@@ -991,6 +992,6 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-page .shopping-totals .basket-item-count strong { font-size: 38px; }
   .shopping-page .shopping-totals .total-stat span { font-size: 27px; }
   .shopping-page .shopping-totals .total-stat.due strong { font-size: 56px; }
-  .shopping-page .shopping-bottom { grid-template-columns: 27% minmax(0,1fr); align-items: stretch; }
-  .shopping-page .shopping-bottom .kiosk-button { height: 100%; min-height: 90px; font-size: 36px; }
+  .shopping-page .shopping-bottom { grid-template-columns: minmax(220px,27%) minmax(0,1fr); align-items: stretch; }
+  .shopping-page .shopping-bottom .kiosk-button { height: 100%; min-height: 90px; max-height: 180px; font-size: 36px; }
 }
