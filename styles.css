@@ -988,13 +988,20 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-page .row-quantity-button { width: 58px; min-width: 58px; height: 58px; min-height: 58px; font-size: 38px; }
   .shopping-page .row-quantity-controls .quantity-value { min-width: 46px; font-size: 38px; }
   .shopping-page .shopping-breakdown,
-  .shopping-page .shopping-bag-charge { font-size: 25px; line-height: 1.2; }
+  .shopping-page .shopping-bag-charge { font-size: 30px; line-height: 1.2; }
   .shopping-page .shopping-breakdown > div,
   .shopping-page .shopping-bag-charge { padding: 3px 16px; }
   .shopping-page .shopping-totals { padding: 9px 16px; }
-  .shopping-page .shopping-totals .basket-item-count strong { font-size: 48px; line-height: 1; }
+  .shopping-page .shopping-totals .basket-item-count strong { font-size: 56px; line-height: 1; }
   .shopping-page .shopping-totals .total-stat span { font-size: 22px; line-height: 1.1; }
+  .shopping-page .shopping-totals .basket-item-count span { font-size: 28px; }
   .shopping-page .shopping-totals .total-stat.due strong { font-size: 56px; }
   .shopping-page .shopping-bottom { grid-template-columns: minmax(220px,27%) minmax(0,1fr); height: 120px; align-items: stretch; }
-  .shopping-page .shopping-bottom .kiosk-button { height: 120px; min-height: 120px; max-height: 120px; font-size: 36px; }
+  .shopping-page .shopping-bottom .kiosk-button { height: 120px; min-height: 120px; max-height: 120px; font-size: 44px; line-height: 1.15; }
+  .shopping-page .shopping-pay { font-size: 64px; }
+  html[lang="en"] .shopping-page .shopping-breakdown,
+  html[lang="en"] .shopping-page .shopping-bag-charge { font-size: 25px; }
+  html[lang="en"] .shopping-page .shopping-totals .basket-item-count strong { font-size: 48px; }
+  html[lang="en"] .shopping-page .shopping-totals .basket-item-count span { font-size: 24px; }
+  html[lang="en"] .shopping-page .shopping-bottom .kiosk-button { font-size: 38px; line-height: 1.1; }
 }
