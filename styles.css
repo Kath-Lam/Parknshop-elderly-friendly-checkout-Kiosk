@@ -951,3 +951,31 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-bottom .shopping-produce { min-height: var(--receipt-action-height); }
   .shopping-table-scroll { min-height: 340px; }
 }
+
+/* Give the basket summary more space than an almost-empty product list. */
+@media(min-width: 901px) {
+  .shopping-page { --read: 30px; --secondary-read: 25px; --control-read: 36px; }
+  .shopping-page .shopping-left { grid-template-rows: auto auto; align-content: start; }
+  .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto auto; }
+  .shopping-page .shopping-receipt { height: min(470px, calc(100dvh - 370px)); min-height: 360px; }
+  .shopping-page .shopping-table-area { flex: 1 1 auto; min-height: 150px; }
+  .shopping-page .shopping-table thead th { padding-top: 9px; padding-bottom: 9px; }
+  .shopping-page .shopping-table tbody td,
+  .shopping-page .shopping-table tbody th { padding-top: 10px; padding-bottom: 10px; }
+  .shopping-page .shopping-product-name { font-size: 36px; }
+  .shopping-page .shopping-product-spec { font-size: 24px; }
+  .shopping-page .shopping-money,
+  .shopping-page .shopping-line-amount { font-size: 30px; }
+  .shopping-page .row-quantity-button { width: 58px; min-width: 58px; height: 58px; min-height: 58px; font-size: 38px; }
+  .shopping-page .row-quantity-controls .quantity-value { min-width: 46px; font-size: 38px; }
+  .shopping-page .shopping-breakdown,
+  .shopping-page .shopping-bag-charge { font-size: 29px; line-height: 1.25; }
+  .shopping-page .shopping-breakdown > div,
+  .shopping-page .shopping-bag-charge { padding: 6px 16px; }
+  .shopping-page .shopping-totals { padding: 9px 16px; }
+  .shopping-page .shopping-totals .basket-item-count strong { font-size: 38px; }
+  .shopping-page .shopping-totals .total-stat span { font-size: 27px; }
+  .shopping-page .shopping-totals .total-stat.due strong { font-size: 56px; }
+  .shopping-page .shopping-bottom { grid-template-columns: 270px minmax(0,1fr); }
+  .shopping-page .shopping-bottom .kiosk-button { min-height: 90px; }
+}
