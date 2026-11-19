@@ -966,10 +966,14 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 /* Give the basket summary more space than an almost-empty product list. */
 @media(min-width: 901px) {
   .shopping-page { --read: 30px; --secondary-read: 25px; --control-read: 36px; }
-  .shopping-page .shopping-left { grid-template-rows: auto auto; align-content: start; }
-  .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto auto; }
-  .shopping-page .shopping-receipt { height: min(470px, calc(100dvh - 370px)); min-height: 360px; }
+  .shopping-page .shopping-left { grid-template-rows: auto minmax(90px,1fr); align-content: stretch; }
+  .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto minmax(90px,1fr); }
+  .shopping-page .shopping-receipt { height: min(430px, calc(100dvh - 410px)); min-height: 350px; }
   .shopping-page .shopping-table-area { flex: 1 1 auto; min-height: 150px; }
+  .shopping-page .shopping-empty td { height: 96px; }
+  .shopping-page .shopping-empty svg { width: 32px; height: 32px; margin: 2px auto 4px; }
+  .shopping-page .shopping-empty strong { font-size: 30px; line-height: 1.1; }
+  .shopping-page .shopping-empty span { margin-top: 2px; font-size: 22px; line-height: 1.1; }
   .shopping-page .shopping-table thead th { padding-top: 9px; padding-bottom: 9px; }
   .shopping-page .shopping-table tbody td,
   .shopping-page .shopping-table tbody th { padding-top: 10px; padding-bottom: 10px; }
@@ -987,6 +991,6 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-page .shopping-totals .basket-item-count strong { font-size: 38px; }
   .shopping-page .shopping-totals .total-stat span { font-size: 27px; }
   .shopping-page .shopping-totals .total-stat.due strong { font-size: 56px; }
-  .shopping-page .shopping-bottom { grid-template-columns: 270px minmax(0,1fr); }
-  .shopping-page .shopping-bottom .kiosk-button { min-height: 90px; }
+  .shopping-page .shopping-bottom { grid-template-columns: 27% minmax(0,1fr); align-items: stretch; }
+  .shopping-page .shopping-bottom .kiosk-button { height: 100%; min-height: 90px; font-size: 36px; }
 }
