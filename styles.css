@@ -890,6 +890,7 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .shopping-scroll-hint[hidden] { visibility: hidden; }
 .shopping-product-name { display: block; word-break: normal; }
 .shopping-product-spec { display: block; margin-top: 2px; font-size: var(--secondary-read); font-weight: 500; line-height: 1.2; white-space: nowrap; color: #344b5a; }
+.shopping-product-promotion { display: block; margin-top: 5px; color: #b42318; font-size: 18px; font-weight: 700; line-height: 1.2; }
 .shopping-table-scroll:focus-visible { outline: 3px solid #ffdf66; outline-offset: -3px; }
 .shopping-table { line-height: 1.25; }
 .shopping-table thead th { padding-top: 7px; padding-bottom: 7px; }
@@ -897,11 +898,11 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 .shopping-empty td { height: 200px; }
 .shopping-breakdown, .shopping-bag-charge { flex-shrink: 0; font-size: var(--read); line-height: 1.15; }
 .shopping-breakdown > div, .shopping-bag-charge { padding: 2px 14px; }
-.shopping-totals { grid-template-columns: auto minmax(0,1fr); align-items: center; gap: 16px; padding: 5px 14px; }
-.shopping-totals .basket-item-count { flex-direction: row; align-items: baseline; gap: 8px; }
+.shopping-totals { grid-template-columns: auto minmax(0,1fr); align-items: end; gap: 16px; padding: 7px 14px 9px; }
+.shopping-totals .basket-item-count { flex-direction: column; align-items: flex-start; gap: 0; }
 .shopping-totals .basket-item-count strong { font-size: var(--control-read); }
 .shopping-totals .total-stat span { margin: 0; font-size: var(--secondary-read); }
-.shopping-totals .total-stat.due { flex-direction: row; align-items: baseline; justify-content: flex-end; gap: 12px; border: 0; padding: 0; grid-column: auto; }
+.shopping-totals .total-stat.due { flex-direction: column-reverse; align-items: flex-end; justify-content: flex-end; gap: 0; border: 0; padding: 0; grid-column: auto; }
 .shopping-totals .total-stat.due strong { font-size: 48px; line-height: 1.1; }
 .shopping-bottom { grid-template-columns: 240px minmax(0,1fr); gap: 14px; }
 .shopping-bottom .kiosk-button { min-height: var(--receipt-action-height); padding: 8px 12px; font-size: var(--read); }
@@ -970,7 +971,7 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-page .shopping-left { grid-template-rows: auto 120px; align-content: start; }
   .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto 120px; }
   .shopping-page .shopping-receipt { height: min(430px, calc(100dvh - 410px)); min-height: 350px; }
-  .shopping-page .shopping-table-area { flex: 1 1 auto; min-height: 150px; }
+  .shopping-page .shopping-table-area { flex: 1 1 auto; min-height: 145px; }
   .shopping-page .shopping-empty td { height: 96px; }
   .shopping-page .shopping-empty svg { width: 32px; height: 32px; margin: 2px auto 4px; }
   .shopping-page .shopping-empty strong { font-size: 30px; line-height: 1.1; }
@@ -980,17 +981,18 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
   .shopping-page .shopping-table tbody th { padding-top: 10px; padding-bottom: 10px; }
   .shopping-page .shopping-product-name { font-size: 36px; }
   .shopping-page .shopping-product-spec { font-size: 24px; }
+  .shopping-page .shopping-product-promotion { font-size: 20px; }
   .shopping-page .shopping-money,
   .shopping-page .shopping-line-amount { font-size: 30px; }
   .shopping-page .row-quantity-button { width: 58px; min-width: 58px; height: 58px; min-height: 58px; font-size: 38px; }
   .shopping-page .row-quantity-controls .quantity-value { min-width: 46px; font-size: 38px; }
   .shopping-page .shopping-breakdown,
-  .shopping-page .shopping-bag-charge { font-size: 29px; line-height: 1.25; }
+  .shopping-page .shopping-bag-charge { font-size: 25px; line-height: 1.2; }
   .shopping-page .shopping-breakdown > div,
-  .shopping-page .shopping-bag-charge { padding: 6px 16px; }
+  .shopping-page .shopping-bag-charge { padding: 3px 16px; }
   .shopping-page .shopping-totals { padding: 9px 16px; }
-  .shopping-page .shopping-totals .basket-item-count strong { font-size: 38px; }
-  .shopping-page .shopping-totals .total-stat span { font-size: 27px; }
+  .shopping-page .shopping-totals .basket-item-count strong { font-size: 48px; line-height: 1; }
+  .shopping-page .shopping-totals .total-stat span { font-size: 22px; line-height: 1.1; }
   .shopping-page .shopping-totals .total-stat.due strong { font-size: 56px; }
   .shopping-page .shopping-bottom { grid-template-columns: minmax(220px,27%) minmax(0,1fr); height: 120px; align-items: stretch; }
   .shopping-page .shopping-bottom .kiosk-button { height: 120px; min-height: 120px; max-height: 120px; font-size: 36px; }

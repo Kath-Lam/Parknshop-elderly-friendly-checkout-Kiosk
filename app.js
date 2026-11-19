@@ -94,8 +94,13 @@ function paymentSide(showBack=true) {
 function otherPaymentMethods(){
   modal(t('其他付款方式','Other payment methods'),`<div class="modal-list">${[[t('電子禮券','eVoucher'),'eVoucher'],[t('禮券','Voucher'),'Voucher'],[t('積分當錢使','MoneyBack points'),'MoneyBack points']].map(([label,method])=>button(label,'method','modal-product',`data-method="${method}"`)).join('')}</div>`,button(t('返回主要付款方式','Back to main payment methods'),'close','modal-action secondary'));
 }
-function receiptProductLabel(p){
-  return `<span class="shopping-product-name">${t(p.shortName||p.name,p.shortEn||p.en)}</span>${p.spec?`<span class="shopping-product-spec">${t(p.spec,p.specEn)}</span>`:''}`;
+function receiptProductLabel(p,quantity=0){
+  const blueberryPairs=p.id==='blueberries'?Math.floor(quantity/2):0;
+  const promotion=blueberryPairs?`<span class="shopping-product-promotion">${t(
+    blueberryPairs===1?'Promotion：兩盒藍莓減 $8':`Promotion：每兩盒藍莓減 $8（已享 ${blueberryPairs} 次）`,
+    blueberryPairs===1?'Promotion: $8 off 2 boxes of blueberries':`Promotion: $8 off every 2 boxes of blueberries × ${blueberryPairs}`
+  )}</span>`:'';
+  return `<span class="shopping-product-name">${t(p.shortName||p.name,p.shortEn||p.en)}</span>${p.spec?`<span class="shopping-product-spec">${t(p.spec,p.specEn)}</span>`:''}${promotion}`;
 }
 function bindReceiptScrollHint(){
   receiptResizeObserver?.disconnect();receiptResizeObserver=null;
@@ -123,7 +128,7 @@ function shoppingReceipt(){
   return `<div class="shopping-receipt"><div class="shopping-table-area"><div class="shopping-table-scroll" tabindex="0" role="region" aria-label="${locked?t('付款前商品清單，只供核對','Items before payment, review only'):t('商品清單，可上下捲動','Your items, scrollable')}"><table class="shopping-table ${locked?'readonly-table':''}"><colgroup>${colgroup}</colgroup><thead><tr>${headers}</tr></thead><tbody>${state.cart.items.length?state.cart.items.map(item=>{
     const p=productById(item.id);
     const quantityCell=locked?`<span class="quantity-value">${item.quantity}</span>`:`<div class="row-quantity-controls" role="group" aria-label="${t(`修改${p.name}數量，目前 ${item.quantity} 件`,`Change quantity for ${p.en}, currently ${item.quantity}`)}">${button('−','item-minus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`減少一件${p.name}`,`Remove one ${p.en}`)}"`)}<span class="quantity-value">${item.quantity}</span>${button('+','item-plus','row-quantity-button',`data-id="${p.id}" aria-label="${t(`增加一件${p.name}`,`Add one ${p.en}`)}" ${item.quantity===99?'disabled':''}`)}</div>`;
-    return `<tr data-product-id="${p.id}" class="${!locked&&state.quantityHighlight===p.id?'quantity-updated':''}"><th scope="row">${receiptProductLabel(p)}</th><td class="shopping-money">${money(p.price)}</td><td class="shopping-quantity">${quantityCell}</td><td class="shopping-line-amount"><span class="line-amount-value">${money(p.price*item.quantity)}</span></td></tr>`;
+    return `<tr data-product-id="${p.id}" class="${!locked&&state.quantityHighlight===p.id?'quantity-updated':''}"><th scope="row">${receiptProductLabel(p,item.quantity)}</th><td class="shopping-money">${money(p.price)}</td><td class="shopping-quantity">${quantityCell}</td><td class="shopping-line-amount"><span class="line-amount-value">${money(p.price*item.quantity)}</span></td></tr>`;
   }).join(''):`<tr class="shopping-empty"><td colspan="4">${icon('scan')}<strong>${t('請加入商品','Please add a product')}</strong><span>${t('點選商品加入清單','Select a product to add it')}</span></td></tr>`}</tbody></table></div><div id="more-products-hint" class="shopping-scroll-hint" hidden>${t('下方還有商品 ↓','More items below ↓')}</div></div><div class="shopping-breakdown"><div><span>${t('商品小計','Items subtotal')}</span><strong>${money(sum.subtotal)}</strong></div><div class="saving"><span>${t('優惠減免','Promotion savings')}</span><strong>${discountMoney(sum.discount)}</strong></div></div><div class="shopping-bag-charge"><span>${t(`購物袋　${state.cart.bags} 個 × $1.00`,`Shopping bags　${state.cart.bags} × $1.00`)}</span><strong>${money(sum.bagCharge)}</strong></div><div class="receipt-totals shopping-totals" aria-live="polite"><div class="total-stat basket-item-count"><strong>${sum.quantity}</strong><span>${t('件商品','items')}</span></div><div class="total-stat due"><span>${t('應付總額','Total due')}</span><strong data-testid="total">${hkd(sum.total)}</strong></div></div></div>`;
 }
 function shoppingCheckout(){
