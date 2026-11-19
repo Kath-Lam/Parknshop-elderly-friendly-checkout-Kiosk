@@ -966,11 +966,12 @@ button:focus-visible, input:focus-visible, .receipt-scroll:focus-visible, a:focu
 
 /* Give the basket summary more space than an almost-empty product list. */
 @media(min-width: 901px) {
+  .screen { height: calc(100dvh - 166px); min-height: 550px; }
   .shopping-page { --read: 30px; --secondary-read: 25px; --control-read: 36px; }
-  .shopping-page .shopping-screen { height: min(calc(100dvh - 166px), 650px); min-height: 520px; }
-  .shopping-page .shopping-left { grid-template-rows: auto 120px; align-content: start; }
-  .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: auto auto 120px; }
-  .shopping-page .shopping-receipt { height: min(430px, calc(100dvh - 410px)); min-height: 350px; }
+  .shopping-page .shopping-screen { height: calc(100dvh - 166px); min-height: 550px; }
+  .shopping-page .shopping-left { grid-template-rows: minmax(0,1fr) 120px; align-content: stretch; }
+  .shopping-page .shopping-left:has(.shopping-feedback:not(:empty)) { grid-template-rows: minmax(0,1fr) auto 120px; }
+  .shopping-page .shopping-receipt { height: auto; min-height: 350px; }
   .shopping-page .shopping-table-area { flex: 1 1 auto; min-height: 145px; }
   .shopping-page .shopping-empty td { height: 96px; }
   .shopping-page .shopping-empty svg { width: 32px; height: 32px; margin: 2px auto 4px; }
